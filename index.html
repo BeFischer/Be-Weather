@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>BeWeather</title>
+</head>
+
+<body>
+    <div class="container">
+        <form class="byCity">
+            <span class="form-group col-sm-2">
+                <input type="text" placeholder="cityState" id="location" autofocus />
+            </span>
+            <button type="submit" id="searchbutton">Search</button>
+        </form>
+
+            <span class="form-group col-sm-1">
+            <button id="currentlocation">CurrentLocation</button> 
+            </span>
+
+        <div class="row">
+            <div class="col-sm-6" id="current-time">
+                <p>
+                    current time
+                </p>
+                <h1 class="currentCity">
+                    Sutherland, Virginia
+                </h1>
+            </div>
+        </div>
+
+        <div class="current">
+            <div class="row">
+                <div class="col-sm-4">
+                        <div class="card-body">
+                            <p class="currentTemp"></p>
+                            <p class="sky"></p>
+                        </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card-body">
+                        <p class="humidity"></p>
+                        <p class="wind"></p>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+                    <br />
+                <div class="TodaysForecast">
+                    <table class="table table-bordered">
+                        <p>
+                            Next 12 hours:
+                        </p>
+                        <thead>
+                            <tr>
+                                <th scope="col">Hr</th>
+                                <th scope="col">Hr+1</th>
+                                <th scope="col">Hr+2</th>
+                                <th scope="col">Hr+3</th>
+                                <th scope="col">Hr+4</th>
+                                <th scope="col">Hr+5</th>
+                                <th scope="col">Hr+6</th>
+                                <th scope="col">Hr+7</th>
+                                <th scope="col">Hr+8</th>
+                                <th scope="col">Hr+9</th>
+                                <th scope="col">Hr+10</th>
+                                <th scope="col">Hr+11</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="skypattern">
+                                <td>☁</td>
+                                <td>☁</td>
+                                <td>☁</td>
+                                <td>☁</td>
+                                <td>☁</td>
+                                <td>☁</td>
+                                <td>☁</td>
+                                <td>☁</td>
+                                <td>☁</td>
+                                <td>☁</td>
+                                <td>☁</td>
+                                <td>☁</td>
+                            </tr>
+                            <tr>
+                                <td>95℉</td>
+                                <td>96℉</td>
+                                <td>97℉</td>
+                                <td>96℉</td>
+                                <td>95℉</td>
+                                <td>96℉</td>
+                                <td>97℉</td>
+                                <td>96℉</td>
+                                <td>95℉</td>
+                                <td>96℉</td>
+                                <td>97℉</td>
+                                <td>96℉</td>
+                            </tr>
+
+                            <tr>
+                                <td>95%</td>
+                                <td>96%</td>
+                                <td>97%</td>
+                                <td>96%</td>
+                                <td>95%</td>
+                                <td>96%</td>
+                                <td>97%</td>
+                                <td>96%</td>
+                                <td>95%</td>
+                                <td>96%</td>
+                                <td>98%</td>
+                                <td>96%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p>
+                    Next 7 days:
+                </p>
+                <div class="forecast">
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Day</h5>
+                                    <div class="card-text">
+                                        <p class="graphic">☀</p>
+                                        <p class="low">95°</p>
+                                        <p class="high">100°</p>
+                                        <br />
+                                        <p class="rain">55%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Day+1</h5>
+                                    <div class="card-text">
+                                        <p class="graphic">☀</p>
+                                        <p class="low">95°</p>
+                                        <p class="high">100°</p>
+                                        <br />
+                                        <p class="rain">55%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Day+2</h5>
+                                    <div class="card-text">
+                                        <p class="graphic">☀</p>
+                                        <p class="low">95°</p>
+                                        <p class="high">100°</p>
+                                        <br />
+                                        <p class="rain">55%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Day+3</h5>
+                                    <div class="card-text">
+                                        <p class="graphic">☀</p>
+                                        <p class="low">95°</p>
+                                        <p class="high">100°</p>
+                                        <br />
+                                        <p class="rain">55%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Day+4</h5>
+                                    <div class="card-text">
+                                        <p class="graphic">☀</p>
+                                        <p class="low">95°</p>
+                                        <p class="high">100°</p>
+                                        <br />
+                                        <p class="rain">55%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Day+5</h5>
+                                    <div class="card-text">
+                                        <p class="graphic">☀</p>
+                                        <p class="low">95°</p>
+                                        <p class="high">100°</p>
+                                        <br />
+                                        <p class="rain">55%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Day+6</h5>
+                                    <div class="card-text">
+                                        <p class="graphic">☀</p>
+                                        <p class="low">95°</p>
+                                        <p class="high">100°</p>
+                                        <br />
+                                        <p class="rain">55%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script src="src/script.js"></script>
+</body>
+
+</html>
