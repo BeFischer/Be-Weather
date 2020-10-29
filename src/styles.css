@@ -50,6 +50,9 @@ p {
   padding: 0;
   margin: 0;
 }
+.sky {
+  text-transform: capitalize;
+}
 
 .currentLocation button {
   padding: 0;
