@@ -80,7 +80,6 @@ function searchCity(city) {
 function city(event) {
   event.preventDefault();
   let cityStateInput = document.querySelector("#location");
-
   let apiKey = "cfeef4d0b0e86d888145aca4caf511b0";
   let units = "imperial";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityStateInput.value}&appid=${apiKey}&units=${units}`;
@@ -106,8 +105,6 @@ function showPosition(position) {
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
   document.querySelector(".sky").innerHTML=response.data.weather[0].description;
   document.querySelector(".wind").innerHTML = `Winds at ${Math.round(response.data.wind.speed)} mph`;
-    console.log(response.data.dt);
-    console.log(response.data.name);
 }  
 axios.get(apiUrl2).then(showTemperature2);
 }
