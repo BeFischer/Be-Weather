@@ -63,7 +63,7 @@ function showTemperature(response) {
   document.querySelector(".currentCity").innerHTML = response.data.name;
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
   document.querySelector(".sky").innerHTML =response.data.weather[0].description;
-  document.querySelector(".wind").innerHTML = `Winds at ${Math.round(response.data.wind.speed)} mph`;
+  document.querySelector(".wind").innerHTML = `${Math.round(response.data.wind.speed)} mph Wind`;
   console.log(response.data.name);
   console.log(response.data.dt);
   document.querySelector("#current-time p").innerHTML = `Last updated: ${formatDate(response.data.dt*1000)} for`;
