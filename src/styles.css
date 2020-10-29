@@ -1,5 +1,5 @@
 .container {
-  max-width: 60%;
+  max-width: 70%;
   background-color: rgb(146, 185, 165);
   border: 1px solid;
   border-radius: 5px;
@@ -34,7 +34,7 @@ p {
 }
 
 #current-time {
-  padding-top: 10px;
+  padding-top: 8px;
 }
 
 .temperatureEmoji,

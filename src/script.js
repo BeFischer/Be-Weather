@@ -1,15 +1,12 @@
 //to get Date - time for current conditions
 
-function formatDate() {
-  let currentMonth = now.getMonth();
-  console.log(currentMonth);
-  let currentDay = now.getDay();
-  console.log(currentDay);
-  let currentDate = now.getDate();
-  console.log(currentDate);
-  let currentHour = now.getHours();
-  console.log(currentHour);
-  let currentMinutes = now.getMinutes();
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let currentMonth = date.getMonth();
+  let currentDay = date.getDay();
+  let currentDate = date.getDate();
+  let currentHour = date.getHours();
+  let currentMinutes = date.getMinutes();
 
   function checkTime(i) {
     if (i < 10) {
@@ -19,6 +16,15 @@ function formatDate() {
   }
 
   currentMinutes = checkTime(currentMinutes);
+
+    function checkHour(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+
+  currentHour = checkHour(currentHour);
 
   let days = [
     "Sunday",
@@ -50,12 +56,6 @@ function formatDate() {
   return formattedDate;
 }
 
-let now = new Date();
-let currentTime = formatDate(now);
-
-let setTime = document.querySelector("#current-time p");
-setTime.innerHTML = `Weather conditions on ${currentTime} for`;
-
 //Search for and return city
 
 function showTemperature(response) {
@@ -64,6 +64,9 @@ function showTemperature(response) {
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
   document.querySelector(".sky").innerHTML =response.data.weather[0].description;
   document.querySelector(".wind").innerHTML = `Winds at ${Math.round(response.data.wind.speed)} mph`;
+  console.log(response.data.name);
+  console.log(response.data.dt);
+  document.querySelector("#current-time p").innerHTML = `Last updated: ${formatDate(response.data.dt*1000)} for`;
 }
 
 function searchCity(city) {
@@ -103,8 +106,10 @@ function showPosition(position) {
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
   document.querySelector(".sky").innerHTML=response.data.weather[0].description;
   document.querySelector(".wind").innerHTML = `Winds at ${Math.round(response.data.wind.speed)} mph`;
-  }
-  axios.get(apiUrl2).then(showTemperature2);
+    console.log(response.data.dt);
+    console.log(response.data.name);
+}  
+axios.get(apiUrl2).then(showTemperature2);
 }
 
 function getCurrentPosition() {
