@@ -1,9 +1,9 @@
 .container {
   max-width: 60%;
   background-color: rgb(146, 185, 165);
-  border: 3px;
+  border: 1px solid;
   border-radius: 5px;
-  border-color: blue;
+  border-color: black;
   font-family: cursive;
   padding: 10px;
   margin: 20px auto;
@@ -24,8 +24,9 @@ h5 {
 }
 .currentCity {
   font-size: 25px;
-  margin-bottom: 15px;
-  margin-top: 15px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 0;
 }
 p {
   font-size: 13px;
