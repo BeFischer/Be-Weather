@@ -121,8 +121,8 @@ function getCurrentPosition() {
 //switch from F to C links
 function displayCelsiusTemperature(event) {
   event.preventDefault()
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
   let tempC = (tempF-32) / 1.8;
   console.log(tempC);
   document.querySelector(".currentTemp").innerHTML = Math.round(tempC);
@@ -131,12 +131,11 @@ function displayCelsiusTemperature(event) {
 function displayFahrenheitTemperature(event) {
   event.preventDefault()
   console.log(tempF);
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
   document.querySelector(".currentTemp").innerHTML = Math.round(tempF);
 } 
 
-let tempF=null;
 
 let locate = document.querySelector("#currentlocation");
 locate.addEventListener("click", getCurrentPosition);
@@ -146,6 +145,8 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+let tempF=null;
 
 searchCity("New York");
 
