@@ -59,7 +59,7 @@ function formatDate(timestamp) {
 //Search for and return city
 
 function showTemperature(response) {
-  let tempF = response.data.main.temp;
+  tempF = response.data.main.temp;
   document.querySelector(".currentTemp").innerHTML = `${(Math.round(tempF))}`;
   document.querySelector(".currentCity").innerHTML = response.data.name;
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
@@ -102,7 +102,7 @@ function showPosition(position) {
   let apiUrl2 = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
 
   function showTemperature2(response) {
-  let tempF = response.data.main.temp;
+  tempF = response.data.main.temp;
   document.querySelector(".currentTemp").innerHTML = `${Math.round(tempF)}`;
   document.querySelector(".currentCity").innerHTML = `${response.data.name}`;
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
@@ -136,6 +136,7 @@ function displayFahrenheitTemperature(event) {
   document.querySelector(".currentTemp").innerHTML = Math.round(tempF);
 } 
 
+let tempF=null;
 
 let locate = document.querySelector("#currentlocation");
 locate.addEventListener("click", getCurrentPosition);
@@ -145,8 +146,6 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
-
-let tempF=null;
 
 searchCity("New York");
 
