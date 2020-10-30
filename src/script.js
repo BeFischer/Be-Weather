@@ -107,7 +107,7 @@ function showPosition(position) {
   document.querySelector(".currentCity").innerHTML = `${response.data.name}`;
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
   document.querySelector(".sky").innerHTML=response.data.weather[0].description;
-  document.querySelector(".wind").innerHTML = `Winds at ${Math.round(response.data.wind.speed)} mph`;
+  document.querySelector(".wind").innerHTML = `${Math.round(response.data.wind.speed)} mph Wind`;
   icon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   icon.setAttribute("alt", response.data.weather[0].description);
