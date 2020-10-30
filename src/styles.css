@@ -38,7 +38,6 @@ p {
 }
 
 .temperatureEmoji,
-.sky,
 .precipitation,
 .wind,
 .allergy,
@@ -46,7 +45,7 @@ p {
 .fishing,
 .humidity,
 .currentTemp {
-  font-size: 20px;
+  font-size: 25px;
   padding: 0;
   margin: 0;
 }
@@ -55,6 +54,18 @@ p {
   font-size: 12px;
   padding: 0;
   margin: 0;
+}
+.unitsFC {
+  vertical-align: super;
+}
+
+.unitsFC .active {
+  color: rgb(33, 33, 33);
+  cursor: default;
+}
+
+.unitsFC .active:hover {
+  text-decoration: none;
 }
 
 .currentLocation button {

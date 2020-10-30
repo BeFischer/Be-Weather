@@ -59,13 +59,12 @@ function formatDate(timestamp) {
 //Search for and return city
 
 function showTemperature(response) {
-  document.querySelector(".currentTemp").innerHTML = `${(Math.round(response.data.main.temp))}°F`;
+  let tempF = response.data.main.temp;
+  document.querySelector(".currentTemp").innerHTML = `${(Math.round(tempF))}`;
   document.querySelector(".currentCity").innerHTML = response.data.name;
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
   document.querySelector(".sky").innerHTML =response.data.weather[0].description;
   document.querySelector(".wind").innerHTML = `${Math.round(response.data.wind.speed)} mph Wind`;
-  console.log(response.data.name);
-  console.log(response.data.dt);
   document.querySelector("#current-time p").innerHTML = `Last updated: ${formatDate(response.data.dt*1000)} for`;
   icon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
@@ -103,7 +102,8 @@ function showPosition(position) {
   let apiUrl2 = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
 
   function showTemperature2(response) {
-  document.querySelector(".currentTemp").innerHTML = `${Math.round(response.data.main.temp)}°F`;
+  let tempF = response.data.main.temp;
+  document.querySelector(".currentTemp").innerHTML = `${Math.round(tempF)}`;
   document.querySelector(".currentCity").innerHTML = `${response.data.name}`;
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
   document.querySelector(".sky").innerHTML=response.data.weather[0].description;
@@ -118,10 +118,34 @@ axios.get(apiUrl2).then(showTemperature2);
 function getCurrentPosition() {
   navigator.geolocation.getCurrentPosition(showPosition);
 }
+//switch from F to C links
+function displayCelsiusTemperature(event) {
+  event.preventDefault()
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let tempC = (tempF-32) / 1.8;
+  console.log(tempC);
+  document.querySelector(".currentTemp").innerHTML = Math.round(tempC);
+}
 
-document.querySelector("#currentlocation").addEventListener("click", getCurrentPosition);
+function displayFahrenheitTemperature(event) {
+  event.preventDefault()
+  console.log(tempF);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  document.querySelector(".currentTemp").innerHTML = Math.round(tempF);
+} 
+
+let tempF=null;
+
+let locate = document.querySelector("#currentlocation");
+locate.addEventListener("click", getCurrentPosition);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 searchCity("New York");
-
-
 
