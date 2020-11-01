@@ -66,6 +66,7 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
+   console.log(response.data.list[0].main.temp_min);
 
   for (let index = 0; index < 6; index++) {
     forecast = response.data.list[index];
@@ -100,7 +101,6 @@ function searchCity(city) {
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayForecast);
 
- console.log(response.data.list[0].main.temp_min);
 }
 
 function city(event) {
