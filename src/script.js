@@ -2,29 +2,21 @@
 
 function formatDate(timestamp) {
   let date = new Date(timestamp);
-  let currentMonth = date.getMonth();
-  let currentDay = date.getDay();
-  let currentDate = date.getDate();
-  let currentHour = date.getHours();
-  let currentMinutes = date.getMinutes();
+  let dateofMonth = date.getDate();
 
-  function formatMinutes(i) {
-    if (i < 10) {
-      i = "0" + i;
-    }
-    return i;
+  function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
   }
 
-  currentMinutes = formatMinutes(currentMinutes);
-
-    function formatHours(i) {
-    if (i < 10) {
-      i = "0" + i;
-    }
-    return i;
-  }
-
-  currentHour = formatHours(currentHour);
+  return `${hours}:${minutes}`;
+}
 
   let days = [
     "Sunday",
@@ -35,25 +27,25 @@ function formatDate(timestamp) {
     "Friday",
     "Saturday"
   ];
+  let day = days[date.getDay()];
 
   let months = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
     "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
   ];
+let month = months[date.getMonth()]
 
-  let formattedDate = `${days[currentDay]}, ${months[currentMonth]} ${currentDate} ${currentHour}:${currentMinutes}`;
-
-  return formattedDate;
+return `${day} ${month} ${dateofMonth} ${formatHours(timestamp)}`;
 }
 
 //Search for and return city

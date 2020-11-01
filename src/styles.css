@@ -81,7 +81,7 @@ form {
   display: inline;
 }
 
-.TodaysForecast {
+.todaysForecast {
   font-size: 11px;
   text-align: left;
 }
@@ -116,12 +116,6 @@ form {
   white-space: nowrap;
 }
 
-tbody {
-  text-align: center;
-}
-tr {
-  line-height: 1px;
-}
 .dailyforecasts {
   margin-bottom: 0px;
   margin-left: 15px;
@@ -130,23 +124,7 @@ tr {
   border: 0;
   padding: 0;
 }
-.forecast .col-sm {
-  padding: 0;
-  text-align: center;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin: 0 auto;
-}
 
-.forecast .card-title {
-  font-size: 10px;
-  padding: 0;
-  margin: 0;
-}
-.forecast .card-text {
-  padding: 4px;
-  font-size: 4px;
-}
 .card-text .low,
 .high,
 .rain {
