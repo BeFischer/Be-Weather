@@ -4,20 +4,6 @@ function formatDate(timestamp) {
   let date = new Date(timestamp);
   let dateofMonth = date.getDate();
 
-  function formatHours(timestamp) {
-  let date = new Date(timestamp);
-  let hours = date.getHours();
-  if (hours < 10) {
-    hours = `0${hours}`;
-  }
-  let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
-
-  return `${hours}:${minutes}`;
-}
-
   let days = [
     "Sunday",
     "Monday",
@@ -45,7 +31,20 @@ function formatDate(timestamp) {
   ];
 let month = months[date.getMonth()]
 
-return `${day} ${month} ${dateofMonth} ${formatHours(timestamp)}`;
+return `${day} ${month} ${dateofMonth}`;
+}
+  function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
 }
 
 //Search for and return city
@@ -57,7 +56,7 @@ function showTemperature(response) {
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
   document.querySelector(".sky").innerHTML =response.data.weather[0].description;
   document.querySelector(".wind").innerHTML = `${Math.round(response.data.wind.speed)} mph Wind`;
-  document.querySelector("#current-time p").innerHTML = `Last updated: ${formatDate(response.data.dt*1000)} for`;
+  document.querySelector("#current-time p").innerHTML = `Last updated: ${formatDate(response.data.dt*1000)} ${formatHours(response.data.dt*1000)} for`;
   icon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   icon.setAttribute("alt", response.data.weather[0].description);
