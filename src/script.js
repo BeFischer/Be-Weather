@@ -65,9 +65,8 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
-   console.log(response.data.list[0].main.temp_min);
 
-  for (let index = 0; index < 6; index++) {
+  for (let index = 0; index < 12; index++) {
     forecast = response.data.list[index];
     forecastElement.innerHTML += `
     <div class="col-2">
@@ -85,9 +84,11 @@ function displayForecast(response) {
         </strong>
         ${Math.round(forecast.main.temp_min)}°
       </div>
+      <p class="forecastHumidity">${forecast.main.humidity}% humidity
     </div>
   `;
   }
+
 }
 
 
@@ -123,6 +124,7 @@ function showPosition(position) {
   let apiKey2 = "cfeef4d0b0e86d888145aca4caf511b0";
 
   let apiUrl2 = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
+  axios.get(apiUrl2).then(showTemperature2);
 
   function showTemperature2(response) {
   tempF = response.data.main.temp;
@@ -135,7 +137,9 @@ function showPosition(position) {
   );
   icon.setAttribute("alt", response.data.weather[0].description);
 }  
-axios.get(apiUrl2).then(showTemperature2);
+
+  apiUrl2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
+  axios.get(apiUrl2).then(displayForecast);
 }
 
 function getCurrentPosition() {

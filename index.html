@@ -15,13 +15,13 @@
     <div class="container">
         <form class="byCity">
             <span class="form-group col-sm-2">
-                <input type="text" placeholder="EnterSearchLocation" id="location" autofocus />
+                <input type="text" placeholder="SearchWeatherForMajorCities" id="location" autofocus />
             </span>
             <button type="submit" id="searchbutton">Search</button>
         </form>
 
             <span class="form-group col-sm-2">
-            <button id="currentlocation">CurrentLocation</button> 
+            <button id="currentlocation">SearchCurrentLocation</button> 
             </span>
 
         <div class="row">
@@ -39,7 +39,10 @@
                             <a href="#" id="celsius-link">°C</a> |
                             <a href="#" id="fahrenheit-link" class = "active">°F</a>
                         </span>
-                        <p class="sky"></p>                        <img src="" alt="" id="icon" />
+                        <p class="sky"></p> 
+                        <span class ="max"></span> 
+                        <span class ="min"></span>                      
+                        <img src="" alt="" id="icon" />
                         </div>
                 </div>
                 <div class="col-sm-4">
@@ -53,33 +56,13 @@
           <br />
 
 <div class="todaysForecast">
-    <p>Throughout today:</p>
+    <p>Forecast for next 12 hours:</p>
     <div class="row weather-forecast" id="forecast"></div>
+    
 </div>
 
-<p>
-                    Next 7 days:
-                </p>
-                <div class="dailyforecasts">
-                    <div class="row">
-                        <div class="col-sm">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Day</h5>
-                                    <div class="card-text">
-                                        <p class="graphic">☀</p>
-                                        <p class="low">95°</p>
-                                        <p class="high">100°</p>
-                                        <br />
-                                        <p class="rain">55%</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <a href ="https://github.com/BeFischer/Be-Weather">My Github </a>
+                <div class ="closing">
+                  <p>Coded By Be Fischer: <a href ="https://github.com/BeFischer/Be-Weather"> github</a></p>
                 </div>
                 <script src="src/script.js"></script>
 </body>

@@ -37,12 +37,7 @@ p {
   padding-top: 8px;
 }
 
-.temperatureEmoji,
-.precipitation,
 .wind,
-.allergy,
-.running,
-.fishing,
 .humidity,
 .currentTemp {
   font-size: 25px;
@@ -73,7 +68,7 @@ p {
   border-width: 1px;
   margin: 0 10px;
   display: inline;
-  background: rgb(193, 193, 204);
+  background: rgb(132, 132, 224);
   box-shadow: 1px 1px 1px;
   font-size: 15px;
 }
@@ -90,13 +85,14 @@ form {
 }
 
 .weather-forecast h3 {
-  color: rgb(186, 186, 186);
-  font-size: 14px;
+  color: rgb(94, 55, 55);
+  font-size: 16px;
   font-weight: 400;
   text-align: center;
   height: 15px;
   line-height: 15px;
-  padding-top: 7px;
+  padding-top: 35px;
+  border: 5px;
 }
 
 .weather-forecast img {
@@ -106,39 +102,22 @@ form {
   width: 48px;
 }
 
-.weather-forecast-temperature {
+.weather-forecast-temperature,
+.forecastHumidity {
   text-align: center;
-  color: rgb(135, 135, 135);
+  color: rgb(94, 55, 55);
   font-size: 13px;
   font-weight: 400;
   height: auto;
   line-height: 15px;
   white-space: nowrap;
 }
-
-.dailyforecasts {
-  margin-bottom: 0px;
-  margin-left: 15px;
-  margin-right: 15px;
-  opacity: 0.7;
-  border: 0;
-  padding: 0;
+.forecastHumidity {
+  padding: 2px;
+  font-size: 10px;
+  font-weight: 400;
 }
-
-.card-text .low,
-.high,
-.rain {
-  font-size: 8px;
-  display: inline-block;
-}
-.card-text .low {
-  background: blue;
-  color: white;
-}
-.card-text .high {
-  background: red;
-  color: white;
-}
-a {
-  color: rgb(24, 24, 241);
+.closing {
+  padding-top: 15px;
+  color: rgb(3, 3, 41);
 }
