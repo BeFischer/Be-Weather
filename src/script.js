@@ -91,16 +91,16 @@ function displayForecast(response) {
 }
 
 
-
 function searchCity(city) {
   let apiKey = "cfeef4d0b0e86d888145aca4caf511b0";
   let units = "imperial";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-
   axios.get(apiUrl).then(showTemperature);
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayForecast);
+
+ console.log(response.data.list[0].main.temp_min);
 }
 
 function city(event) {
