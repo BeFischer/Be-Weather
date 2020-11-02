@@ -84,7 +84,6 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
-//  tempFforecastmin=forecast.main.temp_min
 
   for (let index = 0; index < 12; index++) {
     forecast = response.data.list[index];
@@ -99,9 +98,9 @@ function displayForecast(response) {
         }@2x.png"
       />
       <div class="weather-forecast-temperature">
-        <strong>
+        <strong id ="max">
           ${Math.round(forecast.main.temp_max)}°
-        </strong>
+        </strong id = "min">
         ${Math.round(forecast.main.temp_min)}°
       </div>
       <p class="forecastHumidity">${forecast.main.humidity}% humidity
@@ -149,6 +148,7 @@ function showPosition(position) {
   function showTemperature2(response) {
   tempF = response.data.main.temp;
   tempFfeelsLike=response.data.main.feels_like;
+
   //console.log(formatHours(response.data.sys.sunrise));
   document.querySelector(".currentTemp").innerHTML = `${Math.round(tempF)}`;
   document.querySelector(".currentCity").innerHTML = `${response.data.name}`;
@@ -178,14 +178,11 @@ function displayCelsiusTemperature(event) {
   event.preventDefault()
   let tempC = (tempF-32) / 1.8;
   let tempCfeelsLike = (tempFfeelsLike -32)/1.8;
- // let tempCforecastmin =  (tempFforecastmin -32)/1.8;
-  console.log(tempC);
    celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
 
   document.querySelector(".currentTemp").innerHTML = Math.round(tempC);
   document.querySelector("#feelsLike").innerHTML =Math.round(tempCfeelsLike);
-//document.querySelector(".weather-forecast-temperature")=Math.round(tempCforecastmin);
 }
 
 function displayFahrenheitTemperature(event) {
@@ -198,8 +195,8 @@ document.querySelector("#feelsLike").innerHTML =Math.round(tempFfeelsLike);
 } 
 
 let tempF=null;
-let tempFfeelsLike = null
-//let tempFforecastmin = null
+let tempFfeelsLike = null;
+let tempFforecastmin = null;
 
 let locate = document.querySelector("#currentlocation");
 locate.addEventListener("click", getCurrentPosition);
