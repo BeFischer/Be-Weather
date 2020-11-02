@@ -52,15 +52,17 @@ return `${day} ${month} ${dateofMonth}`;
 function showTemperature(response) {
   //let wDirection = response.data.wind.deg;
   //if wDirection 
-  console.log(response.data.main.feels_like);
+  console.log(formatHours(response.data.sys.sunrise));
   tempF = response.data.main.temp;
+  tempFfeelsLike=response.data.main.feels_like;
   document.querySelector(".currentTemp").innerHTML = `${(Math.round(tempF))}`;
   document.querySelector(".currentCity").innerHTML = response.data.name;
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
   document.querySelector("#feelsLike").innerHTML = `${Math.round(response.data.main.feels_like)}`;
   document.querySelector(".sky").innerHTML =response.data.weather[0].description;
+  document.querySelector(".sun").innerHTML =`Sunrise:${formatHours(response.data.sys.sunrise)} Sunset:${formatHours(response.data.sys.sunset)}`;
 
-  document.querySelector(".wind").innerHTML = `${Math.round(response.data.wind.speed)} mph Wind`;
+  document.querySelector(".wind").innerHTML = `Wind:${Math.round(response.data.wind.speed)};Gusts:${Math.round(response.data.wind.gust)}mph`;
   document.querySelector("#current-time p").innerHTML = `Last updated: ${formatDate(response.data.dt*1000)} ${formatHours(response.data.dt*1000)} for`;
   icon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
@@ -70,6 +72,7 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
+//  tempFforecastmin=forecast.main.temp_min
 
   for (let index = 0; index < 12; index++) {
     forecast = response.data.list[index];
@@ -133,11 +136,15 @@ function showPosition(position) {
 
   function showTemperature2(response) {
   tempF = response.data.main.temp;
+  tempFfeelsLike=response.data.main.feels_like;
+  //console.log(formatHours(response.data.sys.sunrise));
   document.querySelector(".currentTemp").innerHTML = `${Math.round(tempF)}`;
   document.querySelector(".currentCity").innerHTML = `${response.data.name}`;
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
+  document.querySelector(".sun").innerHTML =`Sunrise:${formatHours(response.data.sys.sunrise)} Sunset:${formatHours(response.data.sys.sunset)}`;
   document.querySelector(".sky").innerHTML=response.data.weather[0].description;
-  document.querySelector(".wind").innerHTML = `${Math.round(response.data.wind.speed)} mph Wind`;
+  document.querySelector(".wind").innerHTML = `Wind:${Math.round(response.data.wind.speed)};Gusts:${Math.round(response.data.wind.gust)}mph`;
+
   icon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   icon.setAttribute("alt", response.data.weather[0].description);
@@ -157,15 +164,15 @@ function displayCelsiusTemperature(event) {
   fahrenheitLink.classList.remove("active");
   let tempC = (tempF-32) / 1.8;
   let tempCfeelsLike = (tempFfeelsLike -32)/1.8;
+ // let tempCforecastmin =  (tempFforecastmin -32)/1.8;
   console.log(tempC);
   document.querySelector(".currentTemp").innerHTML = Math.round(tempC);
   document.querySelector("#feelsLike").innerHTML =Math.round(tempCfeelsLike);
-
+//document.querySelector(".weather-forecast-temperature")=Math.round(tempCforecastmin);
 }
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault()
-  console.log(tempF);
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   document.querySelector(".currentTemp").innerHTML = Math.round(tempF);
@@ -175,6 +182,7 @@ document.querySelector("#feelsLike").innerHTML =Math.round(tempFfeelsLike);
 
 let tempF=null;
 let tempFfeelsLike = null
+//let tempFforecastmin = null
 
 let locate = document.querySelector("#currentlocation");
 locate.addEventListener("click", getCurrentPosition);
