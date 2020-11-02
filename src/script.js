@@ -47,12 +47,20 @@ return `${day} ${month} ${dateofMonth}`;
   return `${hours}:${minutes}`;
 }
 
+//function wDirection(response) {
+ // let direction = null;
+ // if (response.data.wind.deg) >315 && <45 {direction = "N"};
+ // if (response.data.wind.deg) > 90 && <315 {direction = }
+//}
+
+
+
 //Search for and return city
 
 function showTemperature(response) {
   //let wDirection = response.data.wind.deg;
   //if wDirection 
-  console.log(formatHours(response.data.sys.sunrise));
+  console.log(response.data.wind);
   tempF = response.data.main.temp;
   tempFfeelsLike=response.data.main.feels_like;
   document.querySelector(".currentTemp").innerHTML = `${(Math.round(tempF))}`;
@@ -140,6 +148,7 @@ function showPosition(position) {
   //console.log(formatHours(response.data.sys.sunrise));
   document.querySelector(".currentTemp").innerHTML = `${Math.round(tempF)}`;
   document.querySelector(".currentCity").innerHTML = `${response.data.name}`;
+  document.querySelector("#feelsLike").innerHTML = `${Math.round(response.data.main.feels_like)}`;
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
   document.querySelector(".sun").innerHTML =`Sunrise:${formatHours(response.data.sys.sunrise)} Sunset:${formatHours(response.data.sys.sunset)}`;
   document.querySelector(".sky").innerHTML=response.data.weather[0].description;
@@ -152,6 +161,10 @@ function showPosition(position) {
 
   apiUrl2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
   axios.get(apiUrl2).then(displayForecast);
+  
+  apiUrl12 = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
+  axios.get(apiUrl2).then(displayUV);
+
 }
 
 function getCurrentPosition() {
@@ -160,12 +173,13 @@ function getCurrentPosition() {
 //switch from F to C links
 function displayCelsiusTemperature(event) {
   event.preventDefault()
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
   let tempC = (tempF-32) / 1.8;
   let tempCfeelsLike = (tempFfeelsLike -32)/1.8;
  // let tempCforecastmin =  (tempFforecastmin -32)/1.8;
   console.log(tempC);
+   celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+
   document.querySelector(".currentTemp").innerHTML = Math.round(tempC);
   document.querySelector("#feelsLike").innerHTML =Math.round(tempCfeelsLike);
 //document.querySelector(".weather-forecast-temperature")=Math.round(tempCforecastmin);
