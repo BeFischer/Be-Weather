@@ -169,6 +169,8 @@ function displayFahrenheitTemperature(event) {
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   document.querySelector(".currentTemp").innerHTML = Math.round(tempF);
+document.querySelector("#feelsLike").innerHTML =Math.round(tempFfeelsLike);
+
 } 
 
 let tempF=null;
