@@ -50,11 +50,16 @@ return `${day} ${month} ${dateofMonth}`;
 //Search for and return city
 
 function showTemperature(response) {
+  //let wDirection = response.data.wind.deg;
+  //if wDirection 
+  console.log(response.data.main.feels_like);
   tempF = response.data.main.temp;
   document.querySelector(".currentTemp").innerHTML = `${(Math.round(tempF))}`;
   document.querySelector(".currentCity").innerHTML = response.data.name;
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
+  document.querySelector("#feelsLike").innerHTML = `${Math.round(response.data.main.feels_like)}`;
   document.querySelector(".sky").innerHTML =response.data.weather[0].description;
+
   document.querySelector(".wind").innerHTML = `${Math.round(response.data.wind.speed)} mph Wind`;
   document.querySelector("#current-time p").innerHTML = `Last updated: ${formatDate(response.data.dt*1000)} ${formatHours(response.data.dt*1000)} for`;
   icon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -151,8 +156,11 @@ function displayCelsiusTemperature(event) {
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
   let tempC = (tempF-32) / 1.8;
+  let tempCfeelsLike = (tempFfeelsLike -32)/1.8;
   console.log(tempC);
   document.querySelector(".currentTemp").innerHTML = Math.round(tempC);
+  document.querySelector("#feelsLike").innerHTML =Math.round(tempCfeelsLike);
+
 }
 
 function displayFahrenheitTemperature(event) {
@@ -164,6 +172,7 @@ function displayFahrenheitTemperature(event) {
 } 
 
 let tempF=null;
+let tempFfeelsLike = null
 
 let locate = document.querySelector("#currentlocation");
 locate.addEventListener("click", getCurrentPosition);
