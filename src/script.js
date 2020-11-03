@@ -63,7 +63,7 @@ return `${direction}`;
 function showTemperature(response) {
   //let wDirection = response.data.wind.deg;
   //if wDirection 
-  console.log(response.data.wind);
+  //console.log(response.data.wind.gust);
   tempF = response.data.main.temp;
   tempFfeelsLike=response.data.main.feels_like;
   document.querySelector(".currentTemp").innerHTML = `${(Math.round(tempF))}`;
@@ -128,8 +128,12 @@ function city(event) {
   let apiKey = "cfeef4d0b0e86d888145aca4caf511b0";
   let units = "imperial";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityStateInput.value}&appid=${apiKey}&units=${units}`;
-
   axios.get(apiUrl).then(showTemperature);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityStateInput.value}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(displayForecast);
+
+
 }
 
 document.querySelector("form.byCity").addEventListener("submit", city);
@@ -145,9 +149,13 @@ function showPosition(position) {
   let apiUrl2 = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
   axios.get(apiUrl2).then(showTemperature2);
 
+  apiUrl2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
+  axios.get(apiUrl2).then(displayForecast);
+
   function showTemperature2(response) {
   tempF = response.data.main.temp;
   tempFfeelsLike=response.data.main.feels_like;
+  console.log(response.data.wind);
 
   //console.log(formatHours(response.data.sys.sunrise));
   document.querySelector(".currentTemp").innerHTML = `${Math.round(tempF)}`;
@@ -156,14 +164,13 @@ function showPosition(position) {
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
   document.querySelector(".sun").innerHTML =`Sunrise:${formatHours(response.data.sys.sunrise)} Sunset:${formatHours(response.data.sys.sunset)}`;
   document.querySelector(".sky").innerHTML=response.data.weather[0].description;
-  document.querySelector(".wind").innerHTML =`${wDirection(response.data.wind.deg)} Wind:${Math.round(response.data.wind.speed)}mph;Gusts:${Math.round(response.data.wind.gust)}mph`;
+  document.querySelector(".wind").innerHTML =`${wDirection(response.data.wind.deg)} Wind:${Math.round(response.data.wind.speed)}mph`;
+  //Gusts:${Math.round(response.data.wind.gust)}mph`;
   icon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   icon.setAttribute("alt", response.data.weather[0].description);
 }  
 
-  apiUrl2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
-  axios.get(apiUrl2).then(displayForecast);
 
   //apiUrl12 = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
   //axios.get(apiUrl2).then(displayUV);
