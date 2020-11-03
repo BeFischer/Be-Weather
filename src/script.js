@@ -152,6 +152,9 @@ function showPosition(position) {
   apiUrl2 = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
   axios.get(apiUrl2).then(displayForecast);
 
+  apiUrl2 = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
+  axios.get(apiUrl2).then(displayUV);
+
   function showTemperature2(response) {
   tempF = response.data.main.temp;
   tempFfeelsLike=response.data.main.feels_like;
@@ -171,9 +174,14 @@ function showPosition(position) {
   icon.setAttribute("alt", response.data.weather[0].description);
 }  
 
+//UV for current location
+function displayUV(response) {
+  console.log(response.data.value)
+  document.querySelector(".uV").innerHTML=`UV value:${Math.round(response.data.value)}`;
 
-  //apiUrl12 = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
-  //axios.get(apiUrl2).then(displayUV);
+ // document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
+
+}
 
 }
 
