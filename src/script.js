@@ -47,23 +47,21 @@ return `${day} ${month} ${dateofMonth}`;
   return `${hours}:${minutes}`;
 }
 
-function wDirection(response) {
-let deg = response
-if (deg >315 && deg<45) {direction = "N";}
+function wDirection(deg) {
+  let direction = 0;
+if (deg >315 | deg<45) {direction = "N";}
 if (deg > 225 && deg<315) {direction ="W";}
 if (deg > 135 && deg<225) {direction ="S";}
 if (deg > 45 && deg<235) {direction ="E";}
 return `${direction}`;
 }
 
-
-
 //Search for and return city
 
 function showTemperature(response) {
   //let wDirection = response.data.wind.deg;
   //if wDirection 
-  //console.log(response.data.wind.gust);
+  console.log(response.data.wind);
   tempF = response.data.main.temp;
   tempFfeelsLike=response.data.main.feels_like;
   document.querySelector(".currentTemp").innerHTML = `${(Math.round(tempF))}`;
@@ -71,9 +69,10 @@ function showTemperature(response) {
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
   document.querySelector("#feelsLike").innerHTML = `${Math.round(response.data.main.feels_like)}`;
   document.querySelector(".sky").innerHTML =response.data.weather[0].description;
-  document.querySelector(".sun").innerHTML =`Sunrise:${formatHours(response.data.sys.sunrise)} Sunset:${formatHours(response.data.sys.sunset)}`;
+  document.querySelector(".sun").innerHTML =`Sunrise:${formatHours(response.data.sys.sunrise*1000)} Sunset:${formatHours(response.data.sys.sunset*1000)}`;
 
-  document.querySelector(".wind").innerHTML =`${wDirection(response.data.wind.deg)} Wind:${Math.round(response.data.wind.speed)}mph;Gusts:${Math.round(response.data.wind.gust)}mph`;
+  document.querySelector(".wind").innerHTML =`${wDirection(response.data.wind.deg)} Wind:${Math.round(response.data.wind.speed)}mph`
+  //;Gusts:${Math.round(response.data.wind.gust)}mph`;
  
   document.querySelector("#current-time p").innerHTML = `Last updated: ${formatDate(response.data.dt*1000)} ${formatHours(response.data.dt*1000)} for`;
   icon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
@@ -85,10 +84,10 @@ function displayForecast(response) {
   forecastElement.innerHTML = null;
   let forecast = null;
 
-  for (let index = 0; index < 12; index++) {
+  for (let index = 0; index < 8; index++) {
     forecast = response.data.list[index];
     forecastElement.innerHTML += `
-    <div class="col-2">
+    <div class="col-3">
       <h3>
         ${formatHours(forecast.dt * 1000)}
       </h3>
@@ -133,6 +132,8 @@ function city(event) {
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityStateInput.value}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayForecast);
 
+  //apiUrl = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${long}&appid=${apiKey2}&units=${units2}`;
+  //axios.get(apiUrl2).then(displayUV);
 
 }
 
@@ -159,16 +160,17 @@ function showPosition(position) {
   tempF = response.data.main.temp;
   tempFfeelsLike=response.data.main.feels_like;
   console.log(response.data.wind);
+  console.log(response.data.coord.lon);
 
   //console.log(formatHours(response.data.sys.sunrise));
   document.querySelector(".currentTemp").innerHTML = `${Math.round(tempF)}`;
   document.querySelector(".currentCity").innerHTML = `${response.data.name}`;
   document.querySelector("#feelsLike").innerHTML = `${Math.round(response.data.main.feels_like)}`;
   document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
-  document.querySelector(".sun").innerHTML =`Sunrise:${formatHours(response.data.sys.sunrise)} Sunset:${formatHours(response.data.sys.sunset)}`;
+  document.querySelector(".sun").innerHTML =`Sunrise:${formatHours(response.data.sys.sunrise * 1000)} Sunset:${formatHours(response.data.sys.sunset*1000)}`;
   document.querySelector(".sky").innerHTML=response.data.weather[0].description;
   document.querySelector(".wind").innerHTML =`${wDirection(response.data.wind.deg)} Wind:${Math.round(response.data.wind.speed)}mph`;
-  //Gusts:${Math.round(response.data.wind.gust)}mph`;
+  //Gusts:${Math.round(response.data.wind.gust)}mph`; not available
   icon.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   icon.setAttribute("alt", response.data.weather[0].description);
@@ -177,7 +179,7 @@ function showPosition(position) {
 //UV for current location
 function displayUV(response) {
   console.log(response.data.value)
-  document.querySelector(".uV").innerHTML=`UV value:${Math.round(response.data.value)}`;
+  document.querySelector(".uV").innerHTML=`UV Index:${Math.round(response.data.value)}`;
 
  // document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
 

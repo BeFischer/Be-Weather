@@ -1,6 +1,6 @@
 .container {
+  background-image: url("pixabay.jpg");
   max-width: 70%;
-  background-color: rgb(146, 185, 165);
   border: 1px solid;
   border-radius: 5px;
   border-color: black;
