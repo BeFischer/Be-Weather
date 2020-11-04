@@ -153,8 +153,7 @@ img {
 }
 .forecastHumidity {
   padding: 10px;
-  margin: 10px;
-  font-weight: 400;
+  margin: 10px auto;
 }
 .closing {
   padding-top: 15px;
