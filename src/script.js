@@ -186,7 +186,7 @@ function showPosition(position) {
 
   document.querySelector("#feelsLike").innerHTML = `${Math.round(tempFfeelsLike)}`;
   document.querySelector(".humidity").innerHTML = `  ${response.data.main.humidity}% Humidity`;
-  document.querySelector(".sunrise").innerHTML =`${formatHours(response.data.sys.sunrise * 1000)}      |`;
+  document.querySelector(".sunrise").innerHTML =`${formatHours(response.data.sys.sunrise * 1000)}`;
   
   document.querySelector(".sunset").innerHTML =`${formatHours(response.data.sys.sunset*1000)}`;
   document.querySelector(".sky").innerHTML=response.data.weather[0].description;
