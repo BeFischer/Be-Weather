@@ -4,7 +4,7 @@ body {
 
 .container-fluid {
   background: rgb(42, 8, 122);
-  max-width: 80%;
+  max-width: 60%;
   border: 1px solid;
   border-radius: 5px;
   border-color: black;
