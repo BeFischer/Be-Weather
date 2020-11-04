@@ -173,7 +173,7 @@ function showPosition(position) {
 }
   function showTemperature2(response) {
       fahrenheitLink.classList.add("active");
-      celsiusLink.classList.remove("acitve");
+      celsiusLink.classList.remove("active");
   tempF = response.data.main.temp;
   tempFfeelsLike=response.data.main.feels_like;
   //console.log(response.data.wind);
