@@ -118,6 +118,7 @@ img {
 
 .weather-forecast h3 {
   color: whitesmoke;
+  font-size: 25px;
   font-weight: 400;
   text-align: center;
   height: 15px;
@@ -142,8 +143,8 @@ img {
   font-weight: 400;
   height: auto;
   line-height: 15px;
-  white-space: nowrap;
 }
+
 #max {
   color: red;
 }
