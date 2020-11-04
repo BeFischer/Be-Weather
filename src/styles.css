@@ -1,9 +1,10 @@
 body {
-  color: rgb(54, 23, 23);
+  background: url("fluffy.jpg");
 }
 
 .container-fluid {
-  background-image: url("pixabay.jpg");
+  background: rgb(42, 8, 122);
+  max-width: 600px;
   border: 1px solid;
   border-radius: 5px;
   border-color: black;
