@@ -1,6 +1,10 @@
+body {
+  color: rgb(112, 37, 37);
+}
+
 .container {
   background-image: url("pixabay.jpg");
-  max-width: 70%;
+  max-width: 60%;
   border: 1px solid;
   border-radius: 5px;
   border-color: black;
@@ -27,43 +31,60 @@ h5 {
   margin-bottom: 5px;
   margin-top: 5px;
   padding: 0;
+  color: whitesmoke;
 }
 p {
   font-size: 13px;
   margin-bottom: 0px;
+  color: whitesmoke;
 }
 
 #current-time {
   padding-top: 8px;
+  color: whitesmoke;
 }
 .currentTemp {
-  font-size: 30px;
+  font-size: 50px;
+  color: whitesmoke;
+  padding-bottom: 5px;
 }
 .wind,
+.uV,
 .humidity {
-  font-size: 15px;
+  font-size: 20px;
   padding: 0;
   margin: 0;
+  color: whitesmoke;
+}
+
+.humidityemoji,
+.windemoji {
+  font-size: 40px;
 }
 .sky,
-.sun,
+.sunrise,
+.sunset,
 .feelsLike {
   text-transform: capitalize;
-  font-size: 10px;
-  padding: 0;
+  font-size: 20px;
+  padding: 10px;
   margin: 0;
+  color: whitesmoke;
 }
 .unitsFC {
   vertical-align: super;
+  font-size: 20px;
+  color: rgb(112, 37, 37);
 }
 
 .unitsFC .active {
-  color: rgb(33, 33, 33);
+  color: whitesmoke;
   cursor: default;
 }
 
 .unitsFC .active:hover {
   text-decoration: none;
+  color: rgb(112, 37, 37);
 }
 
 .currentLocation button {
@@ -83,16 +104,16 @@ img {
   margin-top: 0;
 }
 .todaysForecast {
-  font-size: 11px;
+  font-size: 14px;
   text-align: left;
 }
 .weather-forecast {
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .weather-forecast h3 {
-  color: rgb(94, 55, 55);
-  font-size: 16px;
+  color: whitesmoke;
+  font-size: 20px;
   font-weight: 400;
   text-align: center;
   height: 15px;
@@ -111,16 +132,21 @@ img {
 .weather-forecast-temperature,
 .forecastHumidity {
   text-align: center;
-  color: rgb(94, 55, 55);
-  font-size: 13px;
+  color: whitesmoke;
+  font-size: 15px;
   font-weight: 400;
   height: auto;
   line-height: 15px;
   white-space: nowrap;
 }
+#max {
+  color: red;
+}
+#min {
+  color: blue;
+}
 .forecastHumidity {
   padding: 2px;
-  font-size: 10px;
   font-weight: 400;
 }
 .closing {

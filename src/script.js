@@ -97,10 +97,10 @@ function displayForecast(response) {
         }@2x.png"
       />
       <div class="weather-forecast-temperature">
-        <strong id ="max">
-          ${Math.round(forecast.main.temp_max)}°
-        </strong id = "min">
-        ${Math.round(forecast.main.temp_min)}°
+        <span id ="max">
+          ${Math.round(forecast.main.temp_max)}° </span>
+        <span id ="min">
+        ${Math.round(forecast.main.temp_min)}° </span>
       </div>
       <p class="forecastHumidity">${forecast.main.humidity}% humidity
     </div>
@@ -185,10 +185,12 @@ function showPosition(position) {
 
 
   document.querySelector("#feelsLike").innerHTML = `${Math.round(tempFfeelsLike)}`;
-  document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
-  document.querySelector(".sun").innerHTML =`Sunrise:${formatHours(response.data.sys.sunrise * 1000)} Sunset:${formatHours(response.data.sys.sunset*1000)}`;
+  document.querySelector(".humidity").innerHTML = `  ${response.data.main.humidity}% Humidity`;
+  document.querySelector(".sunrise").innerHTML =`${formatHours(response.data.sys.sunrise * 1000)}      |`;
+  
+  document.querySelector(".sunset").innerHTML =`${formatHours(response.data.sys.sunset*1000)}`;
   document.querySelector(".sky").innerHTML=response.data.weather[0].description;
-  document.querySelector(".wind").innerHTML =`${wDirection(response.data.wind.deg)} Wind:${Math.round(response.data.wind.speed)}mph`;
+  document.querySelector(".wind").innerHTML =`  ${Math.round(response.data.wind.speed)}mph ${wDirection(response.data.wind.deg)} Wind`;
   //Gusts:${Math.round(response.data.wind.gust)}mph`; not available
   document.querySelector("#current-time p").innerHTML = `Last updated: ${formatDate(response.data.dt*1000)} ${formatHours(response.data.dt*1000)} for`;
 
@@ -201,7 +203,7 @@ function showPosition(position) {
 //UV for current location
 function displayUV(response) {
  // console.log(response.data.value)
-  document.querySelector(".uV").innerHTML=`UV Index:${Math.round(response.data.value)}`;
+  document.querySelector(".uV").innerHTML=`${Math.round(response.data.value)} UV Index`;
 
  // document.querySelector(".humidity").innerHTML = `${response.data.main.humidity}% Humidity`;
 }
